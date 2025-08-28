@@ -30,7 +30,7 @@ class DPrior():
 def sample_parameters(classes=2, n_samples=30, batch_jobs=True, batch_size=30):
     class_names = ['ee', 'ie']
     prior_names = ['alpha_pre', 'alpha_post', 'Aplus', 'tauplus_stdp', 'tauminus_stdp', 'factor']
-    priors = [CPrior(-1.0, 1.0), CPrior(-1.0, 1.0), CPrior(0.2, 5.0), CPrior(0.005, 0.030),CPrior(0.005, 0.030), DPrior([[-2,-0.5], [0.5, 2]]) ]
+    priors = [CPrior(-1.0, 1.0), CPrior(-1.0, 1.0), CPrior(0.2, 5.0), CPrior(5, 30),CPrior(5, 30), DPrior([[-2,-0.5], [0.5, 2]]) ]
   
     
     all_batches = []
