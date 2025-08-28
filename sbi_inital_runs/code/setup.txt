@@ -1,0 +1,2 @@
+sudo mount -t cifs //nas.ads.mwn.de/TUWZ/c1n/projects/2024OptimizeSTDP/2025_SUMMER_RUNS     ~/data     -o username=ge84yes,domain=ADS,vers=3.0,rw,uid=$(id -u),gid=$(id -g),file_mode=0664,dir_mode=0775
+./run.bash <total memory in G> "$HOME/data"

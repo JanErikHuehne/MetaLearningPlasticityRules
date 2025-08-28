@@ -1,0 +1,3 @@
+Memory (in mb) : 1500
+Cores : 1 
+Disk-Space : 5 mb
