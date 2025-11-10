@@ -442,7 +442,7 @@ for n in range(20):
             #rd_dir1 = random_filename(length=2)
             #rd_dir2 = random_filename(length=1)
             path = Path(path)
-            save_path = path.parent / str(path.stem) + f"_{n}" + ".jsom"
+            save_path = path.parent / (str(path.stem) + f"_{n}" + ".json")
             #save_path = Path(nas_path) / rd_dir1 / rd_dir2 
             #save_path.mkdir(parents=True, exist_ok=True)
             #save_path = save_path / (random_filename() + ".json")
