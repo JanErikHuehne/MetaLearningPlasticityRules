@@ -337,8 +337,8 @@ for n in range(20):
             'all_timepoints' : [0.5 * (tt+1) for tt in range(120)]
         }
         # Log-simulation of 9 min with sparser saving intervals
-        #duration = 30 * second   
-        duration = 1 * second   
+        duration = 30 * second   
+        #duration = 1 * second   
         
         ee_pruned_trace = []
         ie_pruned_trace = []
