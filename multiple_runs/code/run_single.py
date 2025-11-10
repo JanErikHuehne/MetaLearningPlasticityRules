@@ -456,5 +456,13 @@ for n in range(20):
             #save_path = Path(nas_path) / rd_dir1 / rd_dir2 
             #save_path.mkdir(parents=True, exist_ok=True)
             #save_path = save_path / (random_filename() + ".json")
+            
+            def serialize_brian(obj):
+                if isinstance(obj, b2.Quantity):
+                    return float(obj)  # strip units, keep raw number
+                if isinstance(obj, (set, tuple)):
+                    return list(obj)
+                raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
             with open(str(save_path), 'w') as f:
-                json.dump(total_data, f)
+                json.dump(total_data, f, default=serialize_brian)
