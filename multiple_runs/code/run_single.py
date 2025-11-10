@@ -337,8 +337,8 @@ for n in range(20):
             'all_timepoints' : [0.5 * (tt+1) for tt in range(120)]
         }
         # Log-simulation of 9 min with sparser saving intervals
-        duration = 30 * second   
-       
+        #duration = 30 * second   
+        duration = 1 * second   
         
         ee_pruned_trace = []
         ie_pruned_trace = []
@@ -436,7 +436,17 @@ for n in range(20):
                             'rates_i' : pop_rate_i,
                             'all_timepoints' : [0.5 * (tt+1)+60 for tt in range(120)]
                             }
-            spikes = {"exc": {'unit' : allMPe.i, 'times' :  allMPe.t}, "inh": {'unit' : allMPi.i, 'times' :  allMPi.t}}
+            # Convert Brian2 VariableView to list before saving
+            spikes = {
+                "exc": {
+                    'unit': allMPe.i[:].tolist(),
+                    'times': allMPe.t[:].tolist()
+                },
+                "inh": {
+                    'unit': allMPi.i[:].tolist(),
+                    'times': allMPi.t[:].tolist()
+                }
+            }
             total_data = {'parameters' : parameters, 'minute_one' : minute_one_json, 'long_run' : long_run_json, 'spikes' : spikes }
             # We save the json file 
             #rd_dir1 = random_filename(length=2)
