@@ -236,7 +236,7 @@ def eee_triplets(connectivity_matrix, gpu_acc=True, batch_size=50000, savepath=N
     g.info(f"Motif histogram: {motif_counts.tolist()}")
 
     if savepath:
-        np.save(savepath, motifs)
+        np.save(savepath, motif_counts)
         g.info(f"Saved motifs to {savepath}")
 
     return motif_counts
