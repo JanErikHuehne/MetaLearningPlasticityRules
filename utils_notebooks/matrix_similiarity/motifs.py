@@ -14,7 +14,7 @@ from utils import standard_ee_wrapper, standard_ei_wrapper,standard_ie_wrapper, 
 # --------------------------------------------------------------------------- #
 
 logger = logging.getLogger("motifs")
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 # default handler if user does not configure logging externally
 if not logger.handlers:
