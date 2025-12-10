@@ -334,11 +334,11 @@ def ei_triplets(ee_conn_matrix, ei_conn_matrix, ie_conn_matrix, ii_conn_matrix,
     motif_counts = np.bincount(motifs, minlength=36)
     g.info(f"Motif histogram: {motif_counts.tolist()}")
 
-    #if savepath:
-    #    np.save(savepath, motif_counts)
-    #    g.info(f"Saved motifs to {savepath}")
+    if savepath:
+        np.save(savepath, motif_counts)
+        g.info(f"Saved motifs to {savepath}")
 
-    #return motif_counts
+    return motif_counts
 
     
         
