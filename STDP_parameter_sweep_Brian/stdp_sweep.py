@@ -128,8 +128,8 @@ def build_network(params):
 
 
 
-def run_until_converged(network, connections, chunk_duration=1*second,
-                          epsilon_mad=5e-4, max_steps=900, window_size=30):
+def run_until_converged(network, connections, chunk_duration=CHUNK_DURATION,
+                          epsilon_mad=5e-4, max_steps=MAX_STEPS, window_size=30):
     history = deque(maxlen=window_size)                                 #Sets/Manages length of the sliding window 
     curr_w = np.array(connections.w)                    
     history.append(curr_w)                                              #Add initial weights to history 
