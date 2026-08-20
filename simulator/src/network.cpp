@@ -1,5 +1,6 @@
 #include "network.hpp"
-
+#include "spike_monitor.hpp"
+#include "weight_monitor.hpp"
 
 Network::Network(double dt) : dt_(dt) {}
 
@@ -26,7 +27,7 @@ void Network::build_index() {
     }
 }
 
-void Network::run(int n_bins, Recorder& recorder) {
+void Network::run(int n_bins,SpikeMonitor& spike_mon, WeightMonitor& weight_mon,  int record_interval_bins = 1000) {
     build_index();
     std::vector<bool> spiked(neurons_.size());
     for (int bin=0; bin < n_bins; ++bin) {
@@ -42,7 +43,7 @@ void Network::run(int n_bins, Recorder& recorder) {
         // for all neurons
         for (size_t i = 0; i < neurons_.size(); ++i) {
             spiked[i] = neurons_[i].step(dt_);
-            if (spiked[i]) recorder.record_spike(static_cast<int>(i), t);
+             if (spiked[i]) spike_mon.record_spike(static_cast<int>(i), t);
         }
 
         // propagate spikes through synapses
@@ -51,6 +52,12 @@ void Network::run(int n_bins, Recorder& recorder) {
             if (!spiked[i]) continue;
             for (int s : outgoing_[i]) synapses_[s].on_pre(t, neurons_[synapses_[s].post_idx]);
             for (int s: incoming_[i]) synapses_[s].on_post(t);
+        }
+        if (bin % record_interval_bins == 0) {
+            std::vector<double> weights(synapses_.size());
+            for (size_t s = 0; s < synapses_.size(); ++s) weights[s] = synapses_[s].w;
+            weight_mon.record(t, weights);
+
         }
     }
 }

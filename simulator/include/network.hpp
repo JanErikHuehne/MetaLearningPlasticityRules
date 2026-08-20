@@ -5,8 +5,8 @@
 #include "neuron.hpp"
 #include "synapse.hpp"
 #include "poisson.hpp"
-#include "recorder.hpp"
-
+#include "spike_monitor.hpp"
+#include "weight_monitor.hpp"
 
 class Network {
     public:
@@ -16,7 +16,7 @@ class Network {
         void add_synapse(const PlasticSynapse& s);
         void add_external_drive(int target_idx, double rate_hz, std::mt19937& gen);
 
-        void run(int n_bins, Recorder& recorder);
+        void run(int n_bins, SpikeMonitor& spike_mon, WeightMonitor& weight_mon, int record_interval_bins);
 
         const std::vector<LIFNeuron>& neurons() const { return neurons_;};
         const std::vector<PlasticSynapse>& synapses() const {return synapses_;};
